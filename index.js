@@ -1,7 +1,9 @@
 const inquirer = require("inquirer");
 const { table } = require("table");
 const mysql = require("mysql2/promise");
+// adding all of the packages needed to run 
 
+//creating connection to the database
 (async function () {
   try {
     const db = await mysql.createConnection({
@@ -33,6 +35,8 @@ const mysql = require("mysql2/promise");
       },
     };
 
+
+    // putting the data into the table and displaying it
     async function showTable(data, cb) {
       let tableData = [
         Object.keys(data[0]),
@@ -76,6 +80,7 @@ const mysql = require("mysql2/promise");
       },
     ];
 
+    //pulling up functions to select data
     function menu() {
       inquirer.prompt(options).then((data) => {
         switch (data.option) {
@@ -104,24 +109,25 @@ const mysql = require("mysql2/promise");
       });
     }
 
+        //function for viewing departments
     async function viewDepartments() {
       const [rows] = await db.query(`SELECT * FROM department;`);
       console.table(rows);
       menu();
     }
-
+    //function for viewing employees
     async function viewEmployees() {
       const [rows] = await db.query(`SELECT * FROM employees;`);
       console.table(rows);
       menu();
     }
-
+    //function for viewing roles
     async function viewRoles() {
       const [rows] = await db.query(`SELECT * FROM roles;`);
       console.table(rows);
       menu();
     }
-
+    //function for adding department
     async function addDepartment() {
       try {
         const answer = await inquirer.prompt([

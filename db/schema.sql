@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS employee_db;
 CREATE DATABASE employee_db;
 USE employee_db; 
 
-
+--the three tables needed for data
 
 CREATE TABLE department(
     id INT not null auto_increment,
