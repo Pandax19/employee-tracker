@@ -15,4 +15,4 @@ sequelize.sync().then(() => {
 });
 
 
-module.exports = sequelize;
+// module.exports = sequelize;
