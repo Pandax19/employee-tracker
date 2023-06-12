@@ -26,7 +26,7 @@ const config = {
   
 
 
-function showTable(data, cb){
+ async function showTable(data, cb){
     let tableData = [];
     tableData =[
 
@@ -46,7 +46,18 @@ function showTable(data, cb){
 
 }
 
-dbData = [
+
+const answers = await inquirer.prompt([
+	{
+	 message: "/n" + table(tableData, config),
+	 type: 'input',
+	 name: 'name'
+	}
+ ]);
+
+
+
+ const dbData = [
     {id: 1, name: "x"},
     {id: 2, name: "x"},
     {id: 3, name: "x"},
@@ -60,3 +71,38 @@ dbData = [
 showTable(dbData, () => {
     console.log("do stuff");
 });
+
+const addCourse = async function() {
+	console.log("test");
+    SELECT * FROM **instrutors**
+	await showTable(realData)
+ };
+
+const menu = async function () {
+	
+	const answers = await inquirer.prompt([
+	{
+	 message: "what do you want to do?",
+	 type: "list",
+	 name: 'option',
+	 choices: [
+	   "view all departments", "view all roles","view all employees", "add a department", "add a role", "add an employee", "update an employee role" ],
+	}
+])};
+
+if(answers.option === "view all departments"){
+ viewAll();
+
+ };
+
+
+const init = async function(){
+
+
+	await showTable(dbData); 
+	await menu();
+}
+
+init();
+
+
